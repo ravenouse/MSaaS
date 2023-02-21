@@ -1,0 +1,12 @@
+# syntax=docker/dockerfile:1
+
+FROM python:3.6-alpine
+
+RUN pip3 install --upgrade redis jsonpickle requests flask
+RUN pip3 install minio
+
+WORKDIR /rest
+COPY rest-server.py /rest
+COPY test.py /rest
+
+CMD ["python3", "rest-server.py"]
